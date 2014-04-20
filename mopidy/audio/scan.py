@@ -173,7 +173,8 @@ def audio_data_to_track(data):
     track_kwargs['artists'] = _artists(
         tags, gst.TAG_ARTIST, 'musicbrainz-artistid')
     album_kwargs['artists'] = _artists(
-        tags, gst.TAG_ALBUM_ARTIST, 'musicbrainz-albumartistid')
+        tags, gst.TAG_ALBUM_ARTIST, 'musicbrainz-albumartistid') or \
+        track_kwargs['artists']
 
     track_kwargs['genre'] = '; '.join(tags.get(gst.TAG_GENRE, []))
     track_kwargs['name'] = '; '.join(tags.get(gst.TAG_TITLE, []))
