@@ -151,7 +151,7 @@ class ScanCommand(commands.Command):
                         library.add(track)
                     logger.debug('Added %s', track.uri)
             except exceptions.ScannerError as error:
-                logger.warning('Failed %s: %s', uri, error)
+                logger.warning('Failed %s: %s', uri, unicode(str(error),'utf8'))
 
             if progress.increment():
                 progress.log()
