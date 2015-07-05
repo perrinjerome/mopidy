@@ -1,6 +1,7 @@
 from __future__ import absolute_import, unicode_literals
 
 import json
+import pickle
 import unittest
 
 from mopidy.models import (
@@ -53,6 +54,10 @@ class CachingTest(unittest.TestCase):
     def test_different_instance_with_replace(self):
         t = Track(uri='test1')
         self.assertIsNot(t, t.replace(uri='test2'))
+
+    def test_instance_can_be_pickled(self):
+        t = Track(uri='test')
+        self.assertEquals(pickle.loads(pickle.dumps(t)).uri, 'test')
 
 
 class GenericReplaceTest(unittest.TestCase):

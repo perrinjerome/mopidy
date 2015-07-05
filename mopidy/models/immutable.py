@@ -215,3 +215,12 @@ class ValidatedImmutableObject(ImmutableObject):
         if hasattr(self, '_hash'):
             object.__delattr__(other, '_hash')
         return self._instances.setdefault(weakref.ref(other), other)
+
+    def __getstate__(self):
+        return dict(self._items())
+
+    def __setstate__(self, state):
+        for k, v in state.iteritems():
+            if v:
+                self._set_field(k, v)
+
