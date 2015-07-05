@@ -223,4 +223,5 @@ class ValidatedImmutableObject(ImmutableObject):
         for k, v in state.iteritems():
             if v:
                 self._set_field(k, v)
+        self._hash = id(self)
 
