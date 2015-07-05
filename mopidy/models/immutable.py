@@ -212,7 +212,7 @@ class ValidatedImmutableObject(ImmutableObject):
         if not kwargs:
             return self
         other = super(ValidatedImmutableObject, self).replace(**kwargs)
-        if hasattr(self, '_hash'):
+        if hasattr(other, '_hash'):
             object.__delattr__(other, '_hash')
         return self._instances.setdefault(weakref.ref(other), other)
 
